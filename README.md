@@ -173,7 +173,7 @@
     var fullName = 'Bob ' + this.lastName;
     ```
 
-  - Strings longer than 80 characters should be written across multiple lines using string concatenation.
+  - Strings longer than 120 characters should be written across multiple lines using string concatenation.
   - Note: If overused, long strings with concatenation could impact performance. [jsPerf](http://jsperf.com/ya-string-concat) & [Discussion](https://github.com/airbnb/javascript/issues/40)
 
     ```javascript
@@ -587,14 +587,14 @@
 
 ## <a name='blocks'>Blocks</a>
 
-  - Use braces with all multi-line blocks.
+  - Use braces with all blocks.
 
     ```javascript
     // bad
     if (test)
       return false;
 
-    // good
+    // bad
     if (test) return false;
 
     // good
@@ -678,7 +678,7 @@
     }
     ```
 
-  - Prefixing your comments with `FIXME` or `TODO` helps other developers quickly understand if you're pointing out a problem that needs to be revisited, or if you're suggesting a solution to the problem that needs to be implemented. These are different than regular comments because they are actionable. The actions are `FIXME -- need to figure this out` or `TODO -- need to implement`.
+  - Prefixing your comments with `FIXME` or `TODO` helps other developers quickly understand if you're pointing out a problem that needs to be revisited, or if you're suggesting a solution to the problem that needs to be implemented. These are different than regular comments because they are actionable. The actions are `FIXME -- need to figure this out` or `TODO -- need to implement`. Always finish your `TODO` or `FIXME` comments with `: NAME` such as `TODO: Guofu`
 
   - Use `// FIXME:` to annotate problems
 
@@ -709,23 +709,25 @@
 
 ## <a name='whitespace'>Whitespace</a>
 
-  - Use soft tabs set to 2 spaces
+  - Use soft tabs set to 4 spaces
 
     ```javascript
-    // bad
-    function() {
-    ∙∙∙∙var name;
-    }
 
     // bad
     function() {
     ∙var name;
     }
 
-    // good
+    // bad
     function() {
     ∙∙var name;
     }
+
+    // good
+    function() {
+    ∙∙∙∙var name;
+    }
+
     ```
   - Place 1 space before the leading brace.
 
