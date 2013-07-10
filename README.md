@@ -1,7 +1,8 @@
-# Airbnb JavaScript Style Guide() {
+# ZocDoc JavaScript Style Guide() {
+
+### Fork of https://github.com/airbnb/javascript
 
 *A mostly reasonable approach to JavaScript*
-
 
 ## <a name='TOC'>Table of Contents</a>
 
@@ -616,7 +617,7 @@
 
 ## <a name='comments'>Comments</a>
 
-  - Use `/** ... */` for multiline comments. Include a description, specify types and values for all parameters and return values.
+  - Use `/** ... */` for multiline comments. Include a description, specify types and values for all parameters and return values. This is __required__ for shared components or apis.
 
     ```javascript
     // bad
@@ -678,7 +679,7 @@
     }
     ```
 
-  - Prefixing your comments with `FIXME` or `TODO` helps other developers quickly understand if you're pointing out a problem that needs to be revisited, or if you're suggesting a solution to the problem that needs to be implemented. These are different than regular comments because they are actionable. The actions are `FIXME -- need to figure this out` or `TODO -- need to implement`. Always finish your `TODO` or `FIXME` comments with `: NAME` such as `TODO: Guofu`
+  - Prefixing your comments with `FIXME` or `TODO` helps other developers quickly understand if you're pointing out a problem that needs to be revisited, or if you're suggesting a solution to the problem that needs to be implemented. These are different than regular comments because they are actionable. The actions are `FIXME -- need to figure this out` or `TODO -- need to implement`. Always finish your `TODO` or `FIXME` comments with `: Name` such as `TODO: Guofu`
 
   - Use `// FIXME:` to annotate problems
 
@@ -753,22 +754,6 @@
       age: '1 year',
       breed: 'Bernese Mountain Dog'
     });
-    ```
-  - Place an empty newline at the end of the file.
-
-    ```javascript
-    // bad
-    (function(global) {
-      // ...stuff...
-    })(this);
-    ```
-
-    ```javascript
-    // good
-    (function(global) {
-      // ...stuff...
-    })(this);
-
     ```
 
   - Use indentation when making long method chains.
@@ -974,7 +959,7 @@
     });
     ```
 
-  - Use PascalCase when naming constructors or classes
+  - Use PascalCase when naming constructors, classes, directories, files, or modules
 
     ```javascript
     // bad
@@ -1224,30 +1209,21 @@
 
 ## <a name='modules'>Modules</a>
 
-  - The module should start with a `!`. This ensures that if a malformed module forgets to include a final semicolon there aren't errors in production when the scripts get concatenated.
-  - The file should be named with camelCase, live in a folder with the same name, and match the name of the single export.
-  - Add a method called noConflict() that sets the exported module to the previous version and returns this one.
-  - Always declare `'use strict';` at the top of the module.
+  - The file should start with Cassette references to its dependencies
+  - The code should start with a `;`. This ensures that if a malformed module forgets to include a final semicolon there aren't errors in production when the scripts get concatenated.
+  - The file should be named with PascalCase
+  - The file should consist of a IIFE that passes in the result of a call to `ZD.module` with the module name
 
     ```javascript
-    // fancyInput/fancyInput.js
+    // @reference /App_Scripts/Framework
 
-    !function(global) {
-      'use strict';
+    ;(function(fancyInput) {
 
-      var previousFancyInput = global.FancyInput;
+        fancyInput.FancyInput = function FancyInput(options) {
+            this.options = options || {};
+        };
 
-      function FancyInput(options) {
-        this.options = options || {};
-      }
-
-      FancyInput.noConflict = function noConflict() {
-        global.FancyInput = previousFancyInput;
-        return FancyInput;
-      };
-
-      global.FancyInput = FancyInput;
-    }(this);
+    }(ZD.module('FancyInput'));
     ```
 
     **[[⬆]](#TOC)**
