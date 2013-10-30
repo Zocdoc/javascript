@@ -1203,8 +1203,27 @@
       // do something with data.listingId
     });
     ```
+    
+  - For the sake of modularity (favors refactoring) and to avoid collisions try always to namespace your events with the prefix of your component, view, model... At the same time try to bind your events always to the more specific option.
+  
+  ```js
+  // bad
+  $(this).trigger('click');
+  $tab.on('click', callback);
 
+  // bad
+  $(this).trigger('click.tab');
+  $tab.on('click', callback);
+  
+  // good
+  $(this).trigger('click.tab');
+  $tab.on('click.tab', callback);
+
+  ```
+  
   **[[⬆]](#TOC)**
+  
+  
 
 
 ## <a name='modules'>Modules</a>
